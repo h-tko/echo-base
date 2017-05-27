@@ -1,9 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"github.com/h-tko/echo-base/libraries"
 	"github.com/joho/godotenv"
+	"github.com/labstack/echo"
+	"html/template"
+	"io"
 	"os"
 )
 
@@ -12,7 +14,7 @@ type Template struct {
 }
 
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
-	return t.templates.EecuteTemplate(w, name, data)
+	return t.templates.ExecuteTemplate(w, name, data)
 }
 
 func envLoad() error {

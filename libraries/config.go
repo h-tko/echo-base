@@ -10,7 +10,7 @@ const CONF_DIR = "../config/"
 const FILE_NAME = "app.toml"
 
 type Config struct {
-	app *toml.Tree
+	app *toml.TomlTree
 }
 
 var sharedConfig *Config
@@ -31,8 +31,8 @@ func GetConfig() (*Config, error) {
 			return nil, err
 		}
 
-		for key, value := range conf {
-			defaultConf.Set(key, value)
+		for _, key := range conf.Keys() {
+			defaultConf.Set(key, conf.Get(key))
 		}
 
 		sharedConfig.app = defaultConf

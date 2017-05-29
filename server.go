@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/h-tko/echo-base/app/models"
 	"github.com/h-tko/echo-base/libraries"
 	"github.com/h-tko/echo-base/route"
 	"github.com/joho/godotenv"
@@ -66,6 +67,10 @@ func main() {
 	}
 
 	port := conf.GetString("application.port")
+
+	// DB接続
+	models.InitDB()
+	defer models.CloseDB()
 
 	// サーバー起動
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", port)))

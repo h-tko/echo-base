@@ -1,3 +1,9 @@
 [application]
 name = ""
 port = "8080"
+
+[database]
+host = "localhost"
+user = "postgres"
+port = "5432"
+dbname = "test"

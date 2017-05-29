@@ -1,6 +1,30 @@
 {
-    "memo": "8796ce6030d98dd447d1925663248924e4ef8eef2ed0c788a215a885e9fe04f2",
+    "memo": "b41b042992cb42ca620c5ad12cd937c703d5c525c64b5a35e8a68750b232b302",
     "projects": [
+        {
+            "name": "github.com/dgrijalva/jwt-go",
+            "version": "v3.0.0",
+            "revision": "d2709f9f1f31ebcda9651b03077758c1f3a0018c",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/jinzhu/gorm",
+            "version": "v1.0",
+            "revision": "5174cc5c242a728b435ea2be8a2f7f998e15429b",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/jinzhu/inflection",
+            "branch": "master",
+            "revision": "1c35d901db3da928c72a72d8458480cc9ade058f",
+            "packages": [
+                "."
+            ]
+        },
         {
             "name": "github.com/joho/godotenv",
             "branch": "master",
@@ -14,7 +38,8 @@
             "branch": "master",
             "revision": "bf317578d73df1ffdb4b339848c90a3776ac2d2b",
             "packages": [
-                "."
+                ".",
+                "middleware"
             ]
         },
         {
@@ -22,8 +47,10 @@
             "branch": "master",
             "revision": "c8c07aa087422c146b86d2f79556b450a8e630a1",
             "packages": [
+                "bytes",
                 "color",
-                "log"
+                "log",
+                "random"
             ]
         },
         {

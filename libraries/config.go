@@ -74,20 +74,44 @@ func (c *Config) Get(key string) interface{} {
 // GetString ...
 //
 // configデータを取得し、stringとして返却.
+//
+// 取得に失敗した場合空文字を返却する
 func (c *Config) GetString(key string) string {
-	return c.app.Get(key).(string)
+	res := c.Get(key)
+
+	if res != nil {
+		return res.(string)
+	}
+
+	return ""
 }
 
 // GetInt ...
 //
 // configデータを取得し、intとして返却.
+//
+// 取得に失敗した場合0を返却する
 func (c *Config) GetInt(key string) int {
-	return c.app.Get(key).(int)
+	res := c.Get(key)
+
+	if res != nil {
+		return res.(int)
+	}
+
+	return 0
 }
 
 // GetBool ...
 //
 // configデータを取得し、boolとして返却.
+//
+// 取得に失敗した場合falseを返却する
 func (c *Config) GetBool(key string) bool {
-	return c.app.Get(key).(bool)
+	res := c.Get(key)
+
+	if res != nil {
+		return res.(bool)
+	}
+
+	return false
 }

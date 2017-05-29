@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/h-tko/echo-base/libraries"
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo"
@@ -20,15 +21,11 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 func envLoad() error {
 	err := godotenv.Load()
 
-	if err != nil {
-		return err
-	}
-
 	if os.Getenv("APP_ENV") == "" {
 		os.Setenv("APP_ENV", "development")
 	}
 
-	return nil
+	return err
 }
 
 func main() {
@@ -41,5 +38,4 @@ func main() {
 		panic(err)
 	}
 
-	println(conf.Get("database.host"))
 }

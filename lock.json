@@ -1,0 +1,103 @@
+{
+    "memo": "8796ce6030d98dd447d1925663248924e4ef8eef2ed0c788a215a885e9fe04f2",
+    "projects": [
+        {
+            "name": "github.com/joho/godotenv",
+            "branch": "master",
+            "revision": "325433c502d409f3c3dc820098fb0cfe38d98dc7",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/labstack/echo",
+            "branch": "master",
+            "revision": "bf317578d73df1ffdb4b339848c90a3776ac2d2b",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/labstack/gommon",
+            "branch": "master",
+            "revision": "c8c07aa087422c146b86d2f79556b450a8e630a1",
+            "packages": [
+                "color",
+                "log"
+            ]
+        },
+        {
+            "name": "github.com/mattn/go-colorable",
+            "branch": "master",
+            "revision": "d228849504861217f796da67fae4f6e347643f15",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/mattn/go-isatty",
+            "branch": "master",
+            "revision": "30a891c33c7cde7b02a981314b4228ec99380cca",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/pelletier/go-buffruneio",
+            "branch": "master",
+            "revision": "c37440a7cf42ac63b919c752ca73a85067e05992",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/pelletier/go-toml",
+            "branch": "master",
+            "revision": "048765b4491bcff26505dfbb8a7b920133a19fd2",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/tylerb/graceful",
+            "branch": "master",
+            "revision": "d37e108c89765a8e307f15b8fb2ecd10575da6bb",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "github.com/valyala/fasttemplate",
+            "branch": "master",
+            "revision": "3b874956e03f1636d171bda64b130f9135f42cff",
+            "packages": [
+                "."
+            ]
+        },
+        {
+            "name": "golang.org/x/crypto",
+            "branch": "master",
+            "revision": "f6b343c37ca80bfa8ea539da67a0b621f84fab1d",
+            "packages": [
+                "acme/autocert"
+            ]
+        },
+        {
+            "name": "golang.org/x/net",
+            "branch": "master",
+            "revision": "45e771701b814666a7eb299e6c7a57d0b1799e91",
+            "packages": [
+                "context",
+                "context/ctxhttp"
+            ]
+        },
+        {
+            "name": "golang.org/x/sys",
+            "branch": "master",
+            "revision": "d75a52659825e75fff6158388dddc6a5b04f9ba5",
+            "packages": [
+                "unix"
+            ]
+        }
+    ]
+}

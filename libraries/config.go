@@ -6,11 +6,11 @@ import (
 	"os"
 )
 
-const CONF_DIR = "../config/"
+const CONF_DIR = "./config/"
 const FILE_NAME = "app.toml"
 
 type Config struct {
-	app *toml.TomlTree
+	app *toml.Tree
 }
 
 var sharedConfig *Config
@@ -19,17 +19,15 @@ func GetConfig() (*Config, error) {
 	if sharedConfig == nil {
 		sharedConfig = &Config{app: nil}
 
-		defaultConf, err := toml.Load(defaultFile())
+		defaultConf, err := toml.LoadFile(defaultFile())
 
 		if err != nil {
+			fmt.Printf("%#v", err)
 			return nil, err
 		}
 
-		conf, err := toml.Load(fileByEnv())
-
-		if err != nil {
-			return nil, err
-		}
+		// errorしてたらdefaultのみ使う
+		conf, _ := toml.LoadFile(fileByEnv())
 
 		for _, key := range conf.Keys() {
 			defaultConf.Set(key, conf.Get(key))

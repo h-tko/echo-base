@@ -1,0 +1,13 @@
+{
+    "dependencies": {
+        "github.com/joho/godotenv": {
+            "branch": "master"
+        },
+        "github.com/labstack/echo": {
+            "branch": "master"
+        },
+        "github.com/pelletier/go-toml": {
+            "branch": "master"
+        }
+    }
+}

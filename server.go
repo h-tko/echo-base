@@ -5,19 +5,13 @@ import (
 	"github.com/h-tko/echo-base/libraries"
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo"
-	"html/template"
-	"io"
+	"github.com/labstack/echo/middleware"
 	"os"
 )
 
-type Template struct {
-	templates *template.Template
-}
-
-func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
-	return t.templates.ExecuteTemplate(w, name, data)
-}
-
+// .envファイルのロード
+//
+// return: error
 func envLoad() error {
 	err := godotenv.Load()
 
@@ -28,14 +22,45 @@ func envLoad() error {
 	return err
 }
 
+// echoインスタンス生成
+//
+// return: *echo.Echo
+func newEcho() *echo.Echo {
+	e := echo.New()
+
+	// ミドルウェア登録
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
+	e.Pre(middleware.AddTrailingSlash())
+
+	// 静的ファイルのパス指定
+	e.Static("/static", "assets")
+
+	// template登録
+	t := newTemplate()
+
+	e.Renderer = t
+
+	return e
+}
+
+// エントリポイント
 func main() {
 	// .env読み込み
 	envLoad()
 
+	// echoインスタンス初期化
+	e := newEcho()
+
+	// configファイル読み出し
 	conf, err := libraries.GetConfig()
 
 	if err != nil {
 		panic(err)
 	}
 
+	port := conf.GetString("application.port")
+
+	// サーバー起動
+	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", port)))
 }

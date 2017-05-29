@@ -1,13 +1,13 @@
-package routes
+package route
 
 import (
 	"github.com/h-tko/echo-base/app/controllers"
 	"github.com/labstack/echo"
 )
 
-// routing設定
+// Route ...
 //
-// param: e *echo.Echo
+// routing設定
 func Route(e *echo.Echo) {
-	//    e.Get("/", )
+	e.GET("/", (&controllers.Top{}).Index)
 }

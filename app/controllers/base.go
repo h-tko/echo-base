@@ -1,6 +1,22 @@
 package controllers
 
-// controller規定構造体
+import (
+	"github.com/labstack/echo"
+)
+
+// Base ...
+//
+// controller規定構造体.
+//
+// public functions:
+//
+//   BeforeFilter(c echo.Context)
+//
+//   SetResponse(key string, val interface{})
+//
+//   Render(c echo.Context, status int, oFile string) error
+//
+//   JSON(c echo.Context, status int) error
 type Base struct {
 	MetaTitle       string
 	MetaDescription string
@@ -11,29 +27,25 @@ type Base struct {
 	response map[string]interface{}
 }
 
-// 事前処理
+// BeforeFilter ...
 //
-// param: c echo.Context
+// 事前処理
 func (b *Base) BeforeFilter(c echo.Context) {
 	b.clearAllResponse()
 }
 
-// 画面へのレスポンスパラメータ設定
+// SetResponse ...
 //
-// param: key string パラメータキー
-// param: val interface{} パラメータ
+// 画面へのレスポンスパラメータ設定
 func (b *Base) SetResponse(key string, val interface{}) {
 	b.initResponse()
 
 	b.response[key] = val
 }
 
-// htmlレンダリング
+// Render ...
 //
-// param: c echo.Context
-// param: status int HTTPレスポンスステータス
-// param: oFile string レンダリング対象htmlファイル
-// return: error
+// htmlレンダリング
 func (b *Base) Render(c echo.Context, status int, oFile string) error {
 	b.initResponse()
 
@@ -42,11 +54,9 @@ func (b *Base) Render(c echo.Context, status int, oFile string) error {
 	return c.Render(status, oFile, b.response)
 }
 
-// JSONレスポンス
+// JSON ...
 //
-// param: c echo.Context
-// param: status int HTTPレスポンスステータス
-// return: error
+// JSONレスポンス
 func (b *Base) JSON(c echo.Context, status int) error {
 	b.initResponse()
 
@@ -55,6 +65,8 @@ func (b *Base) JSON(c echo.Context, status int) error {
 	return c.JSON(status, b.response)
 }
 
+// setMeta ...
+//
 // Metaタグ設定
 func (b *Base) setMeta() {
 	b.response["mt"] = b.MetaTitle
@@ -64,13 +76,17 @@ func (b *Base) setMeta() {
 	b.response["mr"] = b.MetaRobots
 }
 
+// clearAllResponse ...
+//
 // 全responseデータ削除
 func (b *Base) clearAllResponse() {
-	for key := range this.response {
-		delete(this.response, key)
+	for key := range b.response {
+		delete(b.response, key)
 	}
 }
 
+// initResponse ...
+//
 // レスポンス用のインスタンスを初期化
 func (b *Base) initResponse() {
 	if b.response == nil {

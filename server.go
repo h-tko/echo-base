@@ -3,15 +3,16 @@ package main
 import (
 	"fmt"
 	"github.com/h-tko/echo-base/libraries"
+	"github.com/h-tko/echo-base/route"
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"os"
 )
 
-// .envファイルのロード
+// envLoad ...
 //
-// return: error
+// .envファイルのロード
 func envLoad() error {
 	err := godotenv.Load()
 
@@ -22,9 +23,9 @@ func envLoad() error {
 	return err
 }
 
-// echoインスタンス生成
+// newEcho ...
 //
-// return: *echo.Echo
+// echoインスタンスの生成と初期化
 func newEcho() *echo.Echo {
 	e := echo.New()
 
@@ -41,9 +42,14 @@ func newEcho() *echo.Echo {
 
 	e.Renderer = t
 
+	// routing設定
+	route.Route(e)
+
 	return e
 }
 
+// main ...
+//
 // エントリポイント
 func main() {
 	// .env読み込み

@@ -10,23 +10,19 @@ const confDir = "./config/"
 const fileName = "app.toml"
 
 // Config ...
-//   configへのアクセス用構造体
+//
+// app.tomlに設定されているデータにアクセスするための構造体.
 type Config struct {
 	// app.tomlの保存変数
 	app *toml.Tree
 }
 
-// singletonインスタンス
+// singletonインスタンス.
 var sharedConfig *Config
 
 // GetConfig ...
-//   Configをロードして構造体に詰めて返却
 //
-//   scope: public
-//
-//   return: *Config
-//
-//   return: error
+// Config構造体のsingletonインスタンスを得る.
 func GetConfig() (*Config, error) {
 	if sharedConfig == nil {
 		sharedConfig = &Config{app: nil}
@@ -54,68 +50,44 @@ func GetConfig() (*Config, error) {
 	return sharedConfig, nil
 }
 
+// defaultConf ...
+//
 // デフォルトのapp.tomlのフルパス
-//
-// scope: private
-//
-// return: string
 func defaultFile() string {
 	return confDir + fileName
 }
 
+// fileByEnv ...
+//
 // 環境別のapp.tomlのフルパス
-//
-// scope: private
-//
-// return: string
 func fileByEnv() string {
 	return fmt.Sprintf(confDir+"%s/"+fileName, os.Getenv("APP_ENV"))
 }
 
 // Get ...
-//   configデータ取得
 //
-//   scope: public
-//
-//   param: key string キー
-//
-//   return: interface{} 値
+// configデータを取得し、interface{}として返却.
 func (c *Config) Get(key string) interface{} {
 	return c.app.Get(key)
 }
 
 // GetString ...
-//   configデータ取得
 //
-//   scope: public
-//
-//   param: key string キー
-//
-//   return: string 値
+// configデータを取得し、stringとして返却.
 func (c *Config) GetString(key string) string {
 	return c.app.Get(key).(string)
 }
 
 // GetInt ...
-//   configデータ取得
 //
-//   scope: public
-//
-//   param: key string キー
-//
-//   return: int 値
+// configデータを取得し、intとして返却.
 func (c *Config) GetInt(key string) int {
 	return c.app.Get(key).(int)
 }
 
 // GetBool ...
-//   configデータ取得
 //
-//   scope: public
-//
-//   param: key string キー
-//
-//   return: bool 値
+// configデータを取得し、boolとして返却.
 func (c *Config) GetBool(key string) bool {
 	return c.app.Get(key).(bool)
 }

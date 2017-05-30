@@ -14,7 +14,7 @@ const fileName = "app.toml"
 // app.tomlに設定されているデータにアクセスするための構造体.
 type Config struct {
 	// app.tomlの保存変数
-	app *toml.Tree
+	app *toml.TomlTree
 }
 
 // singletonインスタンス.
